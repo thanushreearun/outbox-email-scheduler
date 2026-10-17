@@ -1,0 +1,46 @@
+{
+  "name": "outbox-email-scheduler",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-minded email scheduler: Express + BullMQ + Redis + PostgreSQL + Elasticsearch + React",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=22.9"
+  },
+  "scripts": {
+    "services:up": "docker compose up -d --wait",
+    "services:down": "docker compose down",
+    "db:migrate": "npm run db:migrate -w apps/api",
+    "db:generate": "npm run db:generate -w apps/api",
+    "db:deploy": "npm run db:deploy -w apps/api",
+    "ethereal:create": "npm run ethereal:create -w apps/api",
+    "dev": "concurrently -n api,worker,web -c blue,magenta,green \"npm run dev -w apps/api\" \"npm run dev:worker -w apps/api\" \"npm run dev -w apps/web\"",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:worker": "npm run dev:worker -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "build": "npm run build -w apps/api && npm run build -w apps/web",
+    "typecheck": "npm run typecheck -w apps/api && npm run typecheck -w apps/web",
+    "lint": "npm run lint -w apps/api && npm run lint -w apps/web",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test -w apps/api && npm run test -w apps/web",
+    "test:api": "npm run test -w apps/api",
+    "test:web": "npm run test -w apps/web"
+  },
+  "devDependencies": {
+    "concurrently": "9.2.5",
+    "prettier": "3.9.10"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "esbuild@0.25.12": true,
+    "msgpackr-extract@3.0.4": true,
+    "prisma@6.19.3": true,
+    "@prisma/client@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "@scarf/scarf": false
+  }
+}

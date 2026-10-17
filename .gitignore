@@ -1,0 +1,24 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Environment and secrets (only .env.example is committed)
+.env
+.env.*
+!.env.example
+
+# Runtime data
+apps/api/uploads/
+apps/api/uploads-test/
+logs/
+*.log
+
+# Editor, OS and local tooling
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
